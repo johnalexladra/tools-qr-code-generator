@@ -1,7 +1,7 @@
 import qrcode
 
-# Data to encode
-data = "https://www.example.com"
+# Prompt user for data
+data = input("Enter the data to encode in the QR code: ")
 
 # Create a QR code object
 qr = qrcode.QRCode(
