@@ -1,20 +1,27 @@
 import qrcode
 import os
 
-def get_data():
-    file_path = 'data.txt'
-    
-    # Check if the file exists and read from it
+def get_data_from_file(file_path):
+    """Reads data from the specified file. Returns None if file is empty or doesn't exist."""
     if os.path.isfile(file_path):
         with open(file_path, 'r') as file:
             data = file.read().strip()
         if data:
             return data
+    return None
+
+def get_data():
+    """Gets data either from a user-specified file or by user input."""
+    file_path = input("Enter the file name (including extension) to read QR code data from: ").strip()
     
-    # If file doesn't exist or is empty, prompt user for input
-    print("File 'data.txt' not found or is empty.")
-    data = input("Enter the data to encode in the QR code: ")
-    return data
+    # Try to get data from the specified file
+    data = get_data_from_file(file_path)
+    
+    if data:
+        return data
+    else:
+        print(f"File '{file_path}' not found or is empty.")
+        return input("Enter the data to encode in the QR code: ")
 
 # Get the data for the QR code
 data = get_data()
