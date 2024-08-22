@@ -1,7 +1,14 @@
 import qrcode
 
-# Prompt user for data
-data = input("Enter the data to encode in the QR code: ")
+# Read data from a file
+file_path = 'data.txt'
+
+try:
+    with open(file_path, 'r') as file:
+        data = file.read().strip()
+except FileNotFoundError:
+    print(f"The file '{file_path}' was not found.")
+    exit()
 
 # Create a QR code object
 qr = qrcode.QRCode(
